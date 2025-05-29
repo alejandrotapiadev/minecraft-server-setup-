@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --primary-color: #2c7a7b;
+  --secondary-color: #319795;
+  --background-color: #f4f4f4;
+  --main-bg: #ffffff;
+  --text-color: #333;
+  --header-text: #fff;
+  --section-bg: #e2e8f0;
+  --footer-text: #666;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0 20px;
+}
+header {
+  background: var(--primary-color);
+  color: var(--header-text);
+  padding: 1rem 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+h1 {
+  margin: 0;
+  font-weight: 700;
+}
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: var(--main-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  color: var(--primary-color);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 20px;
+}
+h2::after {
+  content: "▼";
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+h2.collapsed::after {
+  transform: rotate(-90deg);
+}
+section {
+  margin-bottom: 1.5rem;
+}
+.content {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  display: block;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+.content.collapsed {
+  display: none;
+}
+pre {
+  background: var(--section-bg);
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+code {
+  font-family: "Courier New", Courier, monospace;
+}
+nav {
+  background: var(--secondary-color);
+  color: var(--header-text);
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav a {
+  color: var(--header-text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+nav a:hover {
+  background: var(--primary-color);
+}
+footer {
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--footer-text);
+  font-size: 0.9rem;
+}
