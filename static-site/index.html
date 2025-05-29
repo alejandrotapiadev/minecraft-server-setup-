@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear Servidor Dedicado Minecraft en Ubuntu Server</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Servidor Dedicado Minecraft en Ubuntu Server</h1>
+    </header>
+
+    <nav>
+      <a href="#requisitos">Requisitos</a>
+      <a href="#actualizar">Actualizar Sistema</a>
+      <a href="#instalar-java">Instalar Java</a>
+      <a href="#crear-usuario">Crear Usuario</a>
+      <a href="#descargar-minecraft">Descargar Minecraft</a>
+      <a href="#configurar-eula">Configurar EULA</a>
+      <a href="#iniciar-servidor">Iniciar Servidor</a>
+      <a href="#consejos">Consejos</a>
+    </nav>
+
+    <main>
+      <section id="requisitos">
+        <h2>Requisitos</h2>
+        <div class="content">
+          <ul>
+            <li>Servidor con Ubuntu Server 18.04 o superior.</li>
+            <li>Acceso root o sudo.</li>
+            <li>Conexión a internet.</li>
+            <li>Conocimientos básicos de terminal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="actualizar">
+        <h2>Actualizar Sistema</h2>
+        <div class="content">
+          <p>Ejecuta los siguientes comandos para actualizar el sistema:</p>
+          <pre><code>sudo apt update
+sudo apt upgrade -y</code></pre>
+        </div>
+      </section>
+
+      <section id="instalar-java">
+        <h2>Instalar Java</h2>
+        <div class="content">
+          <p>
+            Minecraft Server requiere Java 17 o superior. Instala OpenJDK con:
+          </p>
+          <pre><code>sudo apt install openjdk-17-jre-headless -y</code></pre>
+          <p>Verifica la instalación:</p>
+          <pre><code>java -version</code></pre>
+        </div>
+      </section>
+
+      <section id="crear-usuario">
+        <h2>Crear Usuario para el Servidor</h2>
+        <div class="content">
+          <p>Para seguridad, crea un usuario dedicado:</p>
+          <pre><code>sudo adduser minecraft
+sudo su - minecraft</code></pre>
+        </div>
+      </section>
+
+      <section id="descargar-minecraft">
+        <h2>Descargar Minecraft Server</h2>
+        <div class="content">
+          <p>Descarga la última versión del servidor Minecraft:</p>
+          <pre><code>wget https://launcher.mojang.com/v1/objects/1b34c5a70d60cba5d3b2a7dbd8db8c6180d6b408/server.jar -O minecraft_server.jar</code></pre>
+          <p>(Nota: reemplaza el URL con la última versión oficial.)</p>
+        </div>
+      </section>
+
+      <section id="configurar-eula">
+        <h2>Aceptar el EULA</h2>
+        <div class="content">
+          <p>Ejecuta el servidor por primera vez para crear archivos:</p>
+          <pre><code>java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui</code></pre>
+          <p>
+            Luego edita el archivo <code>eula.txt</code> para aceptar el EULA:
+          </p>
+          <pre><code>nano eula.txt</code></pre>
+          <p>
+            Cambia <code>eula=false</code> a <code>eula=true</code> y guarda.
+          </p>
+        </div>
+      </section>
+
+      <section id="iniciar-servidor">
+        <h2>Iniciar el Servidor</h2>
+        <div class="content">
+          <p>Inicia el servidor con:</p>
+          <pre><code>java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui</code></pre>
+          <p>
+            Para dejarlo corriendo en segundo plano, puedes usar
+            <code>screen</code> o <code>tmux</code>:
+          </p>
+          <pre><code>sudo apt install screen
+screen -S minecraft
+java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui
+# Para desconectar sin cerrar el servidor, presiona Ctrl + A, luego D</code></pre>
+        </div>
+      </section>
+
+      <section id="consejos">
+        <h2>Consejos Adicionales</h2>
+        <div class="content">
+          <ul>
+            <li>
+              Configura el firewall para permitir el puerto 25565 (TCP):
+              <code>sudo ufw allow 25565</code>
+            </li>
+            <li>Realiza backups periódicos del mundo.</li>
+            <li>
+              Modifica la configuración del servidor en
+              <code>server.properties</code>.
+            </li>
+            <li>
+              Considera usar servicios como systemd para gestionar el servidor.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 - Documentación Minecraft Server Ubuntu</footer>
+    <script src="script.js"></script>
+  </body>
+</html>
